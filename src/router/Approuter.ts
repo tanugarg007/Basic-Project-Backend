@@ -1,0 +1,12 @@
+import express from 'express';
+import { createStudent, deleteStudent, getAllStudent, updateStudent  } from '../Controler/Student';
+import { SignUp } from '../Controler/SignUp';
+import { Login } from '../Controler/Login';
+const router = express.Router();
+router.post('/signup', SignUp);
+router.post('/login', Login);
+router.post('/students', createStudent);
+router.get('/students', getAllStudent);
+router.patch('/students/:id', updateStudent);
+router.delete('/students/:id', deleteStudent);
+export default router;
