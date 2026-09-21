@@ -8,6 +8,11 @@ const SignUp = async (req, res) => {
         if (!name || !email || !password) {
             return res.status(400).json({ error: "Missing required fields" });
         }
+        if (password.length < 6 || !/[A-Za-z]/.test(password) || !/\d/.test(password)) {
+            return res.status(400).json({
+                error: "Password must be at least 6 characters and include a letter, a symbol, and a number"
+            });
+        }
         const existingUser = await prisma_1.prisma.user.findUnique({
             where: {
                 email: email

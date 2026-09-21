@@ -8,6 +8,9 @@ const createStudent = async (req, res) => {
         if (!name || !email || !className || !rollNo || !age) {
             return res.status(400).json({ error: "Missing required fields" });
         }
+        if (!Number.isInteger(rollNo) || rollNo < 0) {
+            return res.status(400).json({ error: "Roll No must contain numbers only" });
+        }
         const student = await prisma_1.prisma.student.create({
             data: {
                 name,
@@ -44,6 +47,9 @@ const updateStudent = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, email, class: className, rollNo, age } = req.body;
+        if (!Number.isInteger(rollNo) || rollNo < 0) {
+            return res.status(400).json({ error: "Roll No must contain numbers only" });
+        }
         const student = await prisma_1.prisma.student.update({
             where: {
                 id: Number(id)

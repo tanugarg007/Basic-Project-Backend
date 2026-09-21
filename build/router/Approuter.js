@@ -15,4 +15,3 @@ router.get('/students', Student_1.getAllStudent);
 router.patch('/students/:id', Student_1.updateStudent);
 router.delete('/students/:id', Student_1.deleteStudent);
 exports.default = router;
-//# sourceMappingURL=Approuter.js.map
